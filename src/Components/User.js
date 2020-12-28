@@ -1,16 +1,25 @@
-import React, { Component } from 'react'
-import UserItems from './UserItems'
+import React from 'react';
+import UserItems from './UserItems';
+import Spinner from './Spinner';
+
 
  const User =({users,loading})=>{
+
+        if(loading){
+            return <Spinner />
+        }else{
+            return (
+                <div style={userStyle}>
+                    
+                    {users.map(user=>(
+                        <UserItems key={user.id} user={user}/>
+                    ))}
+                </div>
+            )
+
+        }
+
        
-                return (
-                    <div style={userStyle}>
-                        
-                        {users.map(user=>(
-                            <UserItems key={user.id} user={user}/>
-                        ))}
-                    </div>
-                )
 
 } 
 
@@ -19,5 +28,7 @@ const userStyle={
     gridTemplateColumns:"repeat(3,1fr)",
     gridGap:"1rem"
 }
+
+
 
 export default User;
